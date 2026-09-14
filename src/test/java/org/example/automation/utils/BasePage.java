@@ -1,4 +1,4 @@
-package org.example.pages;
+package org.example.automation.utils;
 
 
 import io.appium.java_client.android.AndroidDriver;
