@@ -1,6 +1,5 @@
 package org.example.automation.utils;
 
-
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import org.example.automation.config.ConfigReader;
@@ -16,19 +15,24 @@ public class DriverManager {
         if (driver == null) {
             try {
                 UiAutomator2Options options = new UiAutomator2Options();
-                options.setPlatformName(ConfigReader.getProperty("platform.name"));
-                options.setAutomationName(ConfigReader.getProperty("automation.name"));
-                options.setDeviceName(ConfigReader.getProperty("device.name"));
+                options.setPlatformName(ConfigReader.getProperty("platformName", "Android"));
+                options.setAutomationName(ConfigReader.getProperty("automationName", "UiAutomator2"));
+                options.setDeviceName(ConfigReader.getProperty("deviceName", "Android Emulator"));
 
-                String appPath = System.getProperty("user.dir") + ConfigReader.getProperty("app.path");
-                options.setApp(appPath);
+                String appPath = ConfigReader.getProperty("app", "").trim();
+                if (!appPath.isEmpty()) {
+                    options.setApp(appPath);
+                }
 
-                URL appiumServerUrl = new URL(ConfigReader.getProperty("appium.server.url"));
+                options.setAppPackage(ConfigReader.getProperty("appPackage", "com.wdiodemoapp"));
+                options.setAppActivity(ConfigReader.getProperty("appActivity", ".MainActivity"));
+                options.setAutoGrantPermissions(true);
+
+                URL appiumServerUrl = new URL(ConfigReader.getProperty("appiumServerUrl", "http://127.0.0.1:4723"));
                 driver = new AndroidDriver(appiumServerUrl, options);
-
-                int implicitWait = ConfigReader.getIntProperty("implicit.wait.timeout");
-                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(implicitWait));
-
+                driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(
+                        ConfigReader.getIntProperty("implicitWaitTimeout", 10)
+                ));
             } catch (MalformedURLException e) {
                 throw new RuntimeException("Error en la URL del servidor de Appium.", e);
             }
