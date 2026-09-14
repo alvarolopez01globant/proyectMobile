@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="MobileAutomationSuite" verbose="1">
+    <test name="WDIOAndroidTests">
+        <classes>
+            <class name="com.automation.tests.NavigationTest"/>
+            <class name="com.automation.tests.SignUpTest"/>
+            <class name="com.automation.tests.LoginTest"/>
+            <class name="com.automation.tests.SwipeTest"/>
+        </classes>
+    </test>
+</suite>
