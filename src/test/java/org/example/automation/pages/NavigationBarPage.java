@@ -6,6 +6,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.example.automation.utils.BasePage;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Page object representing the navigation bar in the mobile application.
+ * Contains references to various icons and provides actions related to navigation.
+ */
 public class NavigationBarPage extends BasePage {
 
     @AndroidFindBy(accessibility = "Home")
