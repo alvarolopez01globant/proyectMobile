@@ -6,6 +6,10 @@ import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.example.automation.utils.BasePage;
 import org.openqa.selenium.WebElement;
 
+/**
+ * Page object representing the login screen in the mobile application.
+ * Provides methods for performing login and sign-up actions, and handling related popups.
+ */
 public class LoginPage extends BasePage {
 
     @AndroidFindBy(accessibility = "Login-screen")

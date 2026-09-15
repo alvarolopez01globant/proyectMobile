@@ -9,8 +9,16 @@ import org.testng.annotations.Test;
 
 import java.util.UUID;
 
+/**
+ * Test class for verifying sign-up functionality in the mobile application.
+ * Contains tests for successfully creating a new user account.
+ */
 public class SignUpTest extends BaseTest {
 
+    /**
+     * Tests successful sign-up with a randomly generated email.
+     * Verifies that the success popup becomes visible after completing the sign-up flow.
+     */
     @Test
     public void shouldSignUpSuccessfully() {
         NavigationBarPage navigationBarPage = new NavigationBarPage(DriverManager.getDriver());

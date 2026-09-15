@@ -10,10 +10,26 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
+/**
+ * Base class for Page Object models in the automation framework.
+ * Provides common WebDriver utilities and initialization for page objects.
+ */
 public class BasePage {
+    /**
+     * The Android driver instance used for interacting with mobile elements.
+     */
     protected AndroidDriver driver;
+    /**
+     * The WebDriverWait instance used to wait for element conditions.
+     */
     protected WebDriverWait wait;
 
+    /**
+     * Constructs a new BasePage with the specified Android driver.
+     * Initializes the wait time and page factory for element detection.
+     *
+     * @param driver the AndroidDriver instance
+     */
     public BasePage(AndroidDriver driver) {
         this.driver = driver;
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));

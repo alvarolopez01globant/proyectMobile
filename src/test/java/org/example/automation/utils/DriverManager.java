@@ -8,9 +8,19 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+/**
+ * Manages the Android WebDriver instance for mobile automation tests.
+ * Provides lazy initialization and cleanup of the driver session.
+ */
 public class DriverManager {
     private static AndroidDriver driver;
 
+    /**
+     * Returns the singleton AndroidDriver instance, initializing it if necessary.
+     * The driver is created using configuration properties from config.properties.
+     *
+     * @return the AndroidDriver instance
+     */
     public static AndroidDriver getDriver() {
         if (driver == null) {
             try {
@@ -40,6 +50,10 @@ public class DriverManager {
         return driver;
     }
 
+    /**
+     * Quits the AndroidDriver instance and resets the driver reference to null.
+     * Ensures proper cleanup of the WebDriver session after test execution.
+     */
     public static void quitDriver() {
         if (driver != null) {
             driver.quit();
