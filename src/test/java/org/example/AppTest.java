@@ -1,13 +1,11 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
-
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.testng.annotations.Test;
 
 class AppTest {
 
     @Test
     void testApp() {
-        assertTrue(true);
+        // smoke placeholder
     }
 }

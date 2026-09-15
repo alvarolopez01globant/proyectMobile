@@ -8,6 +8,9 @@ import org.openqa.selenium.WebElement;
 
 public class LoginPage extends BasePage {
 
+    @AndroidFindBy(accessibility = "Login-screen")
+    private WebElement loginScreen;
+
     @AndroidFindBy(accessibility = "button-login-container")
     private WebElement loginMenuTab;
 
@@ -29,8 +32,8 @@ public class LoginPage extends BasePage {
     @AndroidFindBy(accessibility = "button-LOGIN")
     private WebElement loginSubmitButton;
 
-    @AndroidFindBy(id = "android:id/alertTitle")
-    public WebElement alertTitle;
+    @AndroidFindBy(id = "com.wdiodemoapp:id/alert_title")
+    private WebElement alertTitle;
 
     @AndroidFindBy(id = "android:id/button1")
     public WebElement alertOkButton;
@@ -40,6 +43,7 @@ public class LoginPage extends BasePage {
     }
 
     public void signUp(String email, String password) {
+        waitForVisibility(loginScreen);
         click(signUpMenuTab);
         sendKeys(emailInput, email);
         sendKeys(passwordInput, password);
@@ -48,9 +52,19 @@ public class LoginPage extends BasePage {
     }
 
     public void login(String email, String password) {
+        waitForVisibility(loginScreen);
         click(loginMenuTab);
         sendKeys(emailInput, email);
         sendKeys(passwordInput, password);
         click(loginSubmitButton);
+    }
+
+    public boolean isSuccessPopupVisible() {
+        try {
+            waitForVisibility(alertTitle);
+            return alertTitle.isDisplayed();
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

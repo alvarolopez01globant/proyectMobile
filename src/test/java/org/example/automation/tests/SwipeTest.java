@@ -1,5 +1,6 @@
 package org.example.automation.tests;
 
+import org.example.automation.pages.NavigationBarPage;
 import org.example.automation.pages.SwipePage;
 import org.example.automation.utils.BaseTest;
 import org.example.automation.utils.DriverManager;
@@ -11,6 +12,9 @@ public class SwipeTest extends BaseTest {
 
     @Test
     public void shouldSwipeCardsAndFindHiddenCard() {
+        NavigationBarPage navigationBarPage = new NavigationBarPage(DriverManager.getDriver());
+        navigationBarPage.swipeIcon.click();
+
         SwipePage swipePage = new SwipePage(DriverManager.getDriver());
         GestureUtils gestureUtils = new GestureUtils(DriverManager.getDriver());
 
