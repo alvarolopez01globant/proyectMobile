@@ -2,10 +2,10 @@
 <suite name="MobileAutomationSuite" verbose="1">
     <test name="WDIOAndroidTests">
         <classes>
-            <class name="com.automation.tests.NavigationTest"/>
-            <class name="com.automation.tests.SignUpTest"/>
-            <class name="com.automation.tests.LoginTest"/>
-            <class name="com.automation.tests.SwipeTest"/>
+            <class name="org.example.automation.tests.NavigationTest"/>
+            <class name="org.example.automation.tests.SignUpTest"/>
+            <class name="org.example.automation.tests.LoginTest"/>
+            <class name="org.example.automation.tests.SwipeTest"/>
         </classes>
     </test>
 </suite>
