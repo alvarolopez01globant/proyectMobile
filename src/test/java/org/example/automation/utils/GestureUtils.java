@@ -3,6 +3,8 @@ package org.example.automation.utils;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.Dimension;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
@@ -34,18 +36,27 @@ public class GestureUtils {
      * @param element the web element to perform the swipe action on
      */
     public void swipeLeftOnElement(WebElement element) {
-        int startX = element.getRect().getX() + (int) (element.getRect().getWidth() * 0.8);
-        int endX = element.getRect().getX() + (int) (element.getRect().getWidth() * 0.2);
-        int centerY = element.getRect().getY() + (element.getRect().getHeight() / 2);
+        ((JavascriptExecutor) driver).executeScript("mobile: swipeGesture", com.google.common.collect.ImmutableMap.of(
+                "elementId", ((org.openqa.selenium.remote.RemoteWebElement) element).getId(),
+                "direction", "left",
+                "percent", 0.95 // Arrastra el 95% del ancho total del carrusel
+        ));
+    }
 
-        PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
-        Sequence swipe = new Sequence(finger, 1)
-                .addAction(finger.createPointerMove(Duration.ZERO, PointerInput.Origin.viewport(), startX, centerY))
-                .addAction(finger.createPointerDown(PointerInput.MouseButton.LEFT.asArg()))
-                .addAction(finger.createPointerMove(Duration.ofMillis(600), PointerInput.Origin.viewport(), endX, centerY))
-                .addAction(finger.createPointerUp(PointerInput.MouseButton.LEFT.asArg()));
+    /**
+     * Realiza un Scroll Vertical hacia abajo (arrastra de abajo hacia arriba).
+     */
+    public void scrollDown() {
+        org.openqa.selenium.Dimension screenSize = driver.manage().window().getSize();
 
-        driver.perform(Collections.singletonList(swipe));
+        ((JavascriptExecutor) driver).executeScript("mobile: scrollGesture", com.google.common.collect.ImmutableMap.of(
+                "left", 100,
+                "top", (int) (screenSize.getHeight() * 0.20),
+                "width", (int) (screenSize.getWidth() * 0.80),
+                "height", (int) (screenSize.getHeight() * 0.60),
+                "direction", "down", // 'down' desplaza el contenido hacia abajo
+                "percent", 0.8
+        ));
     }
 
     /**
