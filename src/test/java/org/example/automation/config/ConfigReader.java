@@ -1,6 +1,5 @@
 package org.example.automation.config;
 
-
 import java.io.InputStream;
 import java.util.Properties;
 
@@ -22,7 +21,15 @@ public class ConfigReader {
         return properties.getProperty(key);
     }
 
-    public static int getIntProperty(String key) {
-        return Integer.parseInt(properties.getProperty(key));
+    public static String getProperty(String key, String defaultValue) {
+        return properties.getProperty(key, defaultValue);
+    }
+
+    public static int getIntProperty(String key, int defaultValue) {
+        String value = properties.getProperty(key);
+        if (value == null || value.trim().isEmpty()) {
+            return defaultValue;
+        }
+        return Integer.parseInt(value);
     }
 }
